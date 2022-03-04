@@ -66,7 +66,9 @@ func writeError(w http.ResponseWriter, code int, msg string) {
 func res(data interface{}) map[string]interface{} {
 	res := make(map[string]interface{})
 	res["code"] = http.StatusOK
-	res["data"] = data
+	if data != nil {
+		res["data"] = data
+	}
 	res["msg"] = "ok"
 	return res
 }
