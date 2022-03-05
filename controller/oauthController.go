@@ -3,10 +3,10 @@ package controller
 import "github.com/UserServer/model"
 
 type Oauth struct {
-	Id        int
-	Password  string
-	Email     string
-	IpAddress string
+	Id        int    `json:"id"`
+	Password  string `json:"password"`
+	Email     string `json:"email"`
+	IpAddress string `json:"ipAddress"`
 }
 
 func NewOauth(userId int, password string, email string, ipAddr string) *Oauth {

@@ -8,9 +8,9 @@ import (
 )
 
 type Token struct {
-	Id     int
-	UserId int
-	Token  string
+	Id     int    `json:"id"`
+	UserId int    `json:"userId"`
+	Token  string `json:"token"`
 }
 
 func GetUserId(token string) int {

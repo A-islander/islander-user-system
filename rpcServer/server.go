@@ -40,7 +40,7 @@ func UserRpcInit() {
 	// 注册rpc服务
 	rpc.Register(server)
 	rpc.HandleHTTP()
-	port := ":40002"
+	port := ":40001"
 	l, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatal(err)

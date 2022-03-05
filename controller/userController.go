@@ -8,15 +8,15 @@ import (
 )
 
 type User struct {
-	Id           int
-	Name         string
-	RegisterTime int
+	Id           int    `json:"id"`
+	Name         string `json:"name"`
+	RegisterTime int    `json:"registerTime"`
 }
 
 type UserAuth struct {
-	Id       int
-	Password string
-	Email    string
+	Id       int    `json:"id"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
 }
 
 func NewUser(name string) *User {
