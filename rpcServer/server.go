@@ -16,7 +16,7 @@ type UserQuery struct {
 	Token     string
 }
 
-type UserRpcServer int
+type UserRpcServer struct{}
 
 func (server *UserRpcServer) GetUserById(query *UserQuery, reply *controller.User) error {
 	*reply = *controller.GetUserById(query.UserId)
@@ -42,9 +42,9 @@ func UserRpcInit() {
 	rpc.HandleHTTP()
 	port := ":40002"
 	l, err := net.Listen("tcp", port)
-	fmt.Println("rpc listen to ", port)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println("rpc listen to ", port)
 	http.Serve(l, nil)
 }

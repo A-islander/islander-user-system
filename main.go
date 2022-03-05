@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/UserServer/route"
@@ -23,10 +21,7 @@ func init() {
 }
 
 func main() {
-	port := ":50001"
-	userServer := route.Init()
-	fmt.Printf("http listen to port %s \n", port)
-	go http.ListenAndServe(port, userServer)
+	go route.UserHttpInit()
 	go rpcserver.UserRpcInit()
 	select {}
 }
