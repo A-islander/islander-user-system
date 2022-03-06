@@ -1,6 +1,6 @@
 package controller
 
-import "github.com/UserServer/model"
+import "github.com/user_server/model"
 
 type Oauth struct {
 	Id        int    `json:"id"`

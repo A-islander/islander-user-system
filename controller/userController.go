@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/UserServer/model"
+	"github.com/user_server/model"
 )
 
 type User struct {

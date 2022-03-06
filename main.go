@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/UserServer/route"
-	rpcserver "github.com/UserServer/rpcServer"
+	"github.com/user_server/route"
+	rpcserver "github.com/user_server/rpcServer"
 )
 
 func init() {

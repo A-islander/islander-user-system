@@ -1,6 +1,6 @@
 package controller
 
-import "github.com/UserServer/model"
+import "github.com/user_server/model"
 
 func TransferUserArr(data []model.User) []User {
 	var res []User

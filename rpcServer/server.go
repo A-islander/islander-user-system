@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/rpc"
 
-	"github.com/UserServer/controller"
+	"github.com/user_server/controller"
 )
 
 type UserQuery struct {

@@ -1,14 +1,18 @@
 package route
 
 import (
+	"errors"
 	"net/http"
 
-	"github.com/UserServer/controller"
+	"github.com/user_server/controller"
 )
 
 func getUserByToken(w http.ResponseWriter, r *http.Request) {
-	token := r.Header["Authorization"][0]
-	user, err := controller.GetUserByToken(token)
+	token, ok := r.Header["Authorization"]
+	if !ok {
+		writeError(w, 403, errors.New("without Authorization").Error())
+	}
+	user, err := controller.GetUserByToken(token[0])
 	if err != nil {
 		writeError(w, 401, err.Error())
 	} else {

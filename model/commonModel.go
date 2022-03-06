@@ -3,7 +3,7 @@ package model
 import (
 	"log"
 
-	"github.com/UserServer/config"
+	"github.com/user_server/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

@@ -3,7 +3,7 @@ package controller
 import (
 	"errors"
 
-	"github.com/UserServer/model"
+	"github.com/user_server/model"
 )
 
 func LoginByPassword(password string) (string, error) {

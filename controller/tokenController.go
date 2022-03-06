@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/UserServer/model"
+	"github.com/user_server/model"
 )
 
 type Token struct {
