@@ -1,4 +1,5 @@
 tmp/
-config.json
 *.exe
 message.log
+dockersrc/
+log/
