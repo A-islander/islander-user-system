@@ -11,6 +11,7 @@ func getUserByToken(w http.ResponseWriter, r *http.Request) {
 	token, ok := r.Header["Authorization"]
 	if !ok {
 		writeError(w, 403, errors.New("without Authorization").Error())
+		return
 	}
 	user, err := controller.GetUserByToken(token[0])
 	if err != nil {
