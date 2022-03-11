@@ -2,6 +2,7 @@ package route
 
 import (
 	"errors"
+	"log"
 	"net/http"
 
 	"github.com/user_server/controller"
@@ -23,6 +24,7 @@ func getUserByToken(w http.ResponseWriter, r *http.Request) {
 
 func registerUserByIp(w http.ResponseWriter, r *http.Request) {
 	ipAddr := remoteIp(r)
+	log.Println(ipAddr)
 	token, _ := controller.RegisterByIpAddress(ipAddr)
 	write(w, struct{ Token string }{Token: token})
 }

@@ -11,7 +11,7 @@ func TestToken(t *testing.T) {
 
 func TestOauth(t *testing.T) {
 	// fmt.Println(SaveOauth(8, "", "", ""))
-	fmt.Println(GetOauthByIp("127.0.0.1"), GetOauthByPassword("123"))
+	// fmt.Println(GetOauthByIp("127.0.0.1"), GetOauthByPassword("123"))
 }
 
 func TestUser(t *testing.T) {

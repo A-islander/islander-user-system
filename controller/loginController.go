@@ -24,9 +24,11 @@ func RegisterByPassword(username string, email string, password string, ipAddr s
 
 // 根据ip注册
 func RegisterByIpAddress(ipAddr string) (string, error) {
-	if userId := GetOauthByIp(ipAddr); userId != -1 {
+	userId, err := GetOauthByIp(ipAddr)
+	if err == nil {
 		return GetTokenByUserId(userId), nil
 	}
+	// 注册
 	user := NewUser(newRandName(7))
 	NewOauth(user.Id, "", "", ipAddr)
 	token := NewToken(user.Id)

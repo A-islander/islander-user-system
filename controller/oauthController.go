@@ -20,7 +20,7 @@ func NewOauth(userId int, password string, email string, ipAddr string) *Oauth {
 	return res
 }
 
-func GetOauthByIp(ipAddr string) int {
-	id := model.GetOauthByIp(ipAddr)
-	return id
+func GetOauthByIp(ipAddr string) (int, error) {
+	id, err := model.GetOauthByIp(ipAddr)
+	return id, err
 }

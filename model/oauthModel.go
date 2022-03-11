@@ -14,11 +14,11 @@ func GetOauthByPassword(password string) int {
 	return res.Id
 }
 
-func GetOauthByIp(ipAddr string) int {
+func GetOauthByIp(ipAddr string) (int, error) {
 	var res Oauth
 	db := newDB()
-	db.Where("ip_address = ?", ipAddr).Take(&res)
-	return res.Id
+	err := db.Where("ip_address = ?", ipAddr).Take(&res).Error
+	return res.Id, err
 }
 
 func SaveOauth(userId int, password string, email string, ipAddr string) int {
