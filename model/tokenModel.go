@@ -7,11 +7,11 @@ type Token struct {
 	time   int
 }
 
-func Token2UserId(token string) int {
+func Token2UserId(token string) (int, error) {
 	var res Token
 	db := newDB()
-	db.Where("token = ?", token).Take(&res)
-	return res.UserId
+	err := db.Where("token = ?", token).Take(&res).Error
+	return res.UserId, err
 }
 
 func GetTokenByUserId(userId int) string {

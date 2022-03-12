@@ -13,7 +13,7 @@ type Token struct {
 	Token  string `json:"token"`
 }
 
-func GetUserId(token string) int {
+func GetUserId(token string) (int, error) {
 	return model.Token2UserId(token)
 }
 

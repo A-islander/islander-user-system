@@ -6,7 +6,7 @@ import (
 )
 
 func TestToken(t *testing.T) {
-	fmt.Println(GetTokenByUserId(1), Token2UserId("23308e8c5c2a175736cd55a822766c87"))
+	// fmt.Println(GetTokenByUserId(1), Token2UserId("23308e8c5c2a175736cd55a822766c87"))
 }
 
 func TestOauth(t *testing.T) {

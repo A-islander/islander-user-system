@@ -16,7 +16,7 @@ func getUserByToken(w http.ResponseWriter, r *http.Request) {
 	}
 	user, err := controller.GetUserByToken(token[0])
 	if err != nil {
-		writeError(w, 401, err.Error())
+		writeError(w, 403, err.Error())
 	} else {
 		write(w, user)
 	}
@@ -26,5 +26,7 @@ func registerUserByIp(w http.ResponseWriter, r *http.Request) {
 	ipAddr := remoteIp(r)
 	log.Println(ipAddr)
 	token, _ := controller.RegisterByIpAddress(ipAddr)
-	write(w, struct{ Token string }{Token: token})
+	write(w, struct {
+		Token string `json:"token"`
+	}{Token: token})
 }

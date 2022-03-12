@@ -34,9 +34,12 @@ func GetUserById(id int) *User {
 }
 
 func GetUserByToken(token string) (*User, error) {
-	id := model.Token2UserId(token)
-	if id == 0 {
-		return nil, errors.New("token is filed")
+	if err := checkToken(token); err != nil {
+		return nil, err
+	}
+	id, err := model.Token2UserId(token)
+	if err != nil {
+		return nil, err
 	}
 	return GetUserById(id), nil
 }
@@ -48,4 +51,11 @@ func GetUserArr(userIdArr []int) ([]User, error) {
 func (user *User) update() bool {
 	model.UpdateUser(TransferUserModel(*user))
 	return true
+}
+
+func checkToken(token string) error {
+	if len(token) != 32 {
+		return errors.New("token is field")
+	}
+	return nil
 }
