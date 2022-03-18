@@ -2,6 +2,7 @@ package model
 
 import (
 	"log"
+	"time"
 
 	"github.com/user_server/config"
 	"gorm.io/driver/mysql"
@@ -13,7 +14,7 @@ var db = newDB()
 // 要改
 func getDsn() string {
 	conf := config.GetConfig()
-	dsn := conf.UserName + ":" + conf.PassWord + "@tcp(" + conf.Ip + ")/" + conf.Database + "?timeout=30s"
+	dsn := conf.UserName + ":" + conf.PassWord + "@tcp(" + conf.Ip + ")/" + conf.Database + "?charset=utf8mb4?timeout=30s"
 	return dsn
 }
 
@@ -24,5 +25,9 @@ func newDB() *gorm.DB {
 	if err != nil {
 		log.Println(err)
 	}
+	sqlDb, _ := db.DB()
+	sqlDb.SetMaxIdleConns(10)
+	sqlDb.SetMaxOpenConns(50)
+	sqlDb.SetConnMaxLifetime(time.Hour)
 	return db
 }
