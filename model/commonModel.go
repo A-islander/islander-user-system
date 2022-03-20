@@ -14,7 +14,7 @@ var db = newDB()
 // 要改
 func getDsn() string {
 	conf := config.GetConfig()
-	dsn := conf.UserName + ":" + conf.PassWord + "@tcp(" + conf.Ip + ")/" + conf.Database + "?charset=utf8mb4?timeout=30s"
+	dsn := conf.UserName + ":" + conf.PassWord + "@tcp(" + conf.Ip + ")/" + conf.Database + "?charset=utf8mb4&timeout=30s"
 	return dsn
 }
 
