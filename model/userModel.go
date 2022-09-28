@@ -16,7 +16,9 @@ func UpdateUser(data User) int {
 
 func GetUserArr(userIdArr []int) []User {
 	var res []User
-	db.Find(&res, userIdArr)
+	if len(userIdArr) > 0 {
+		db.Find(&res, userIdArr)
+	}
 	return res
 }
 

@@ -1,0 +1,50 @@
+name: Deployment
+
+on:
+  push:
+    branches: [master] # push events on source branch master push
+
+jobs:
+  islander-forum-system-deployment:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    
+    - name: Golang Action
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.16
+    - run: go version
+
+    - name: Build Application
+      run: |
+        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+    
+    - name: Publish
+      uses: nogsantos/scp-deploy@master
+      with:
+        src: ./user_server
+        host: ${{ secrets.SSH_HOST }}
+        remote: ${{ secrets.SSH_DIR }}
+        # port: ${{ secrets.SSH_PORT }}
+        user: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
+
+    - name: Set SSH Key
+      run: |
+        echo "${{ secrets.SSH_KEY }}" > ./perKey
+        chmod 600 ./perKey
+        mkdir ~/.ssh/
+        touch ~/.ssh/known_hosts
+        ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Start Server
+      run: |
+        ssh -i ./perKey ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }}/..; docker-compose up -d --build user_server"
+        rm ./perKey
